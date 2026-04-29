@@ -13,14 +13,14 @@ manual exploratory testing → documented test cases → automated regression su
 ## Tech Stack
 
 | Layer | Tool / Library |
-|---|---|---
+|---|---|
 | Test framework | Robot Framework |
 | HTTP client | RequestsLibrary |
 | Data generation | Faker, Python |
 | ML / anomaly detection | scikit-learn (Isolation Forest) |
 | Data-driven testing | CSV (static) + ML-generated CSV |
 | Language | Python 3 |
-
+---
 ## Test Coverage
 
 ### Smoke Tests 
@@ -131,6 +131,8 @@ robot --outputdir results/ tests/
 ```
 
 ## Project Structure
+
+```
 api-test-automation/
 │
 ├── tests/
