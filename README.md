@@ -132,6 +132,7 @@ CSV reading
 AI/ML dataset generation
 
 Project structure
+```
 api-test-automation/
 │
 ├── tests/
@@ -172,3 +173,4 @@ api-test-automation/
 ├── results/
 │
 └── README.md
+```
