@@ -108,7 +108,6 @@ pip install robotframework
 pip install robotframework-requests
 pip install faker
 pip install scikit-learn numpy
-Project structure
 ```
 
 ## Running Tests
