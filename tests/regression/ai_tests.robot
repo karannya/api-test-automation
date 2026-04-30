@@ -4,7 +4,7 @@ Resource    ../../resources/keywords/user_flow_keywords.robot
 
 *** Test Cases ***
 
-Generate Test Dataset With ML Insights
+Generate Test Dataset File With ML Insights
     ${file}=    Generate Test Data File With ML Insights
     Set Suite Variable    ${AI_FILE}    ${file}
 

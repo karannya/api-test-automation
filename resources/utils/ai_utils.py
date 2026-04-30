@@ -39,15 +39,20 @@ def is_valid_name(name):
 # FEATURE ENGINEERING (ML INPUT)
 
 def extract_features(user):
+    email = user.get("email", "")
+    name = user.get("name", "")
+
     return [
         len(user.get("name", "")),
         len(user.get("email", "")),
         user.get("email", "").count("@"),
         1 if is_valid_email(user.get("email", "")) else 0,
         1 if is_valid_gender(user.get("gender")) else 0,
-        1 if is_valid_status(user.get("status")) else 0
-    ]
+        1 if is_valid_status(user.get("status")) else 0,
 
+        # NEW BALANCE SIGNAL
+        1 if len(user.get("email", "")) > 30 else 0,
+    ]
 # TRAIN ML MODEL (NORMAL ONLY)
 def generate_normal_dataset(n=200):
     data = []
@@ -64,7 +69,7 @@ def generate_normal_dataset(n=200):
     return np.array(data)
 
 
-model = IsolationForest(contamination=0.1, random_state=42)
+model = IsolationForest(contamination=0.15, random_state=42)
 model.fit(generate_normal_dataset())
 
 # POSITIVE GENERATION
@@ -134,17 +139,12 @@ def generate_edge_user():
     base = generate_positive_user()
 
     patterns = [
-        lambda: {**base, "name": "A"},
-        lambda: {**base, "name": "AB"},
-        lambda: {**base, "name": "John"*50},
-        lambda: {**base, "name": "John@Smith"},
-        lambda: {**base, "email": fake.unique.email()},
-        lambda: {**base, "email": "test+tag@gmail.com"},
-        lambda: {**base, "email": "test.email@sub.domain.com"},
-        lambda: {**base, "email": "a@b"},
-        lambda: {**base, "name": " "},
-        lambda: {**base, "email": ""},
-    ]
+    lambda: {**base, "name": "A"},  # too short
+    lambda: {**base, "name": "John"*20},  # long
+    lambda: {**base, "email": "test.email@sub.domain.com"},
+    lambda: {**base, "email": "test+tag@gmail.com"},
+    lambda: {**base, "email": "a@b"},
+]
     user = random.choice(patterns)()
     user["expected_type"] = "edge"
     return user

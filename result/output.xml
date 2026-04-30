@@ -1,0 +1,1542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.10.5 on darwin)" generated="2026-04-30T12:43:14.906777" rpa="false" schemaversion="5">
+<suite id="s1" name="Ai Tests" source="/Users/annya/python/robot-framework/api-test-automation/tests/regression/ai_tests.robot">
+<test id="s1-t1" name="Generate Test Dataset File With ML Insights" line="7">
+<kw name="Generate Test Data File With ML Insights" owner="ai_keywords">
+<kw name="Generate Test Data With Ml Insights" owner="ai_utils">
+<msg time="2026-04-30T12:43:16.177292" level="INFO">${file} = /Users/annya/python/robot-framework/api-test-automation/data/ai_ml_test_data.csv</msg>
+<var>${file}</var>
+<status status="PASS" start="2026-04-30T12:43:16.047209" elapsed="0.130112"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Generated File: ${file}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:16.177435" elapsed="0.000207"/>
+</kw>
+<return>
+<value>${file}</value>
+<status status="PASS" start="2026-04-30T12:43:16.177672" elapsed="0.000027"/>
+</return>
+<msg time="2026-04-30T12:43:16.177772" level="INFO">${file} = /Users/annya/python/robot-framework/api-test-automation/data/ai_ml_test_data.csv</msg>
+<var>${file}</var>
+<status status="PASS" start="2026-04-30T12:43:16.046859" elapsed="0.130927"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-04-30T12:43:16.178376" level="INFO">${AI_FILE} = /Users/annya/python/robot-framework/api-test-automation/data/ai_ml_test_data.csv</msg>
+<arg>${AI_FILE}</arg>
+<arg>${file}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-04-30T12:43:16.177877" elapsed="0.000521"/>
+</kw>
+<status status="PASS" start="2026-04-30T12:43:16.046468" elapsed="0.132006"/>
+</test>
+<test id="s1-t2" name="Run AI ML User API Tests" line="11">
+<kw name="Read AI ML Dataset" owner="ai_keywords">
+<kw name="Read Csv As Dict" owner="csv_reader">
+<msg time="2026-04-30T12:43:16.179212" level="INFO">${data} = [{'name': 'James Martin', 'email': 'jenniferwilliams@example.com', 'gender': 'female', 'status': 'active', 'expected_type': 'positive', 'ml_label': 'anomaly', 'anomaly_score': '-0.028'}, {'name': 'Cyn...</msg>
+<var>${data}</var>
+<arg>${file}</arg>
+<status status="PASS" start="2026-04-30T12:43:16.178993" elapsed="0.000233"/>
+</kw>
+<return>
+<value>${data}</value>
+<status status="PASS" start="2026-04-30T12:43:16.179247" elapsed="0.000014"/>
+</return>
+<msg time="2026-04-30T12:43:16.179358" level="INFO">${data} = [{'name': 'James Martin', 'email': 'jenniferwilliams@example.com', 'gender': 'female', 'status': 'active', 'expected_type': 'positive', 'ml_label': 'anomaly', 'anomaly_score': '-0.028'}, {'name': 'Cyn...</msg>
+<var>${data}</var>
+<arg>${AI_FILE}</arg>
+<status status="PASS" start="2026-04-30T12:43:16.178841" elapsed="0.000529"/>
+</kw>
+<kw name="Run User API Tests With ML Data" owner="ai_keywords">
+<kw name="Get Auth Headers" owner="user_service_keywords">
+<kw name="Create Headers" owner="common_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:16.180137" level="INFO">${headers} = {'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:16.179891" elapsed="0.000260"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-04-30T12:43:16.180175" elapsed="0.000014"/>
+</return>
+<msg time="2026-04-30T12:43:16.180253" level="INFO">${headers} = {'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Bearer ${TOKEN}</arg>
+<status status="PASS" start="2026-04-30T12:43:16.179746" elapsed="0.000519"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-04-30T12:43:16.180282" elapsed="0.000010"/>
+</return>
+<msg time="2026-04-30T12:43:16.180342" level="INFO">${headers} = {'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<status status="PASS" start="2026-04-30T12:43:16.179629" elapsed="0.000725"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:16.181354" level="INFO">${payload} = {'name': 'James Martin', 'email': 'jenniferwilliams@example.com', 'gender': 'female', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:16.180519" elapsed="0.000848"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:17.218986" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '105'} 
+ body=b'{"name": "James Martin", "email": "jenniferwilliams@example.com", "gender": "female", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:17.219510" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:17 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '61', 'x-ratelimit-reset': '1', 'x-request-id': '6f2cc88a-ec0c-447e-a5d1-8319d516b291', 'x-runtime': '0.088952', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=D0OARIV5cpLQcP%2FPXUaoV71JRR8%2Bmm6Hu42KCZti2gVFQsNOZIiiPZojktThYKHOExY7ZbvbpnsTxo0rUR%2Fd82vrH%2BbqnR7UsLFIoHI2FgCP6KKYFVr8sFuayklBFh8%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f4599e67d8b1579-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:17.220068" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:16.181433" elapsed="1.038726"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.221031" elapsed="0.004097"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.226562" elapsed="0.001172"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:17.225761" elapsed="0.002072"/>
+</kw>
+<var name="${row}">{'name': 'James Martin', 'email': 'jenniferwilliams@example.com', 'gender': 'female', 'status': 'active', 'expected_type': 'positive', 'ml_label': 'anomaly', 'anomaly_score': '-0.028'}</var>
+<status status="PASS" start="2026-04-30T12:43:16.180468" elapsed="1.047408"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:17.231032" level="INFO">${payload} = {'name': 'Cynthia Wallace', 'email': 'karen73@example.net', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.228349" elapsed="0.002729"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:17.723758" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '101'} 
+ body=b'{"name": "Cynthia Wallace", "email": "karen73@example.net", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:17.724104" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:17 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '89', 'x-ratelimit-reset': '2', 'x-request-id': '19889bdc-c488-44fa-8dcd-4db4e079baeb', 'x-runtime': '0.089671', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=TZ5YHCDHf%2Bnf%2FG7LIYNkyHIgiOAilDM3YLVWQLZIweR9cb3%2FEbKYxD5x59NTd%2Bgdcx%2BkEVXLNPoJv43PwIeFDjOY3TSxw5w5Kych05Oy6SN9eDaTxv%2BVu%2BU7g3aova4%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f4599ed0aed3c20-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:17.727998" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.231275" elapsed="0.496822"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.728735" elapsed="0.002622"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.732294" elapsed="0.000910"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:17.731782" elapsed="0.001518"/>
+</kw>
+<var name="${row}">{'name': 'Cynthia Wallace', 'email': 'karen73@example.net', 'gender': 'female', 'status': 'inactive', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.064'}</var>
+<status status="PASS" start="2026-04-30T12:43:17.228176" elapsed="0.505166"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:17.736121" level="INFO">${payload} = {'name': 'Vincent Mueller', 'email': 'michealvalentine@example.com', 'gender': 'female', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.733683" elapsed="0.002485"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:18.953015" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '108'} 
+ body=b'{"name": "Vincent Mueller", "email": "michealvalentine@example.com", "gender": "female", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:18.953472" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:18 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '88', 'x-ratelimit-reset': '2', 'x-request-id': '0c58dce3-6446-46d8-9733-9456ea0105b5', 'x-runtime': '0.086496', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=K%2B763jUrQUVThvNJosS9miYSo%2FOPBwkEggf6LOeieTC6XasDHQ%2Fb34yVMd6NJQs8%2B5HWnvDvhyLs2NrrBYGDbj0LY3FErZRYQj646167dF2voNrVBsnu2k5FAYlmNTI%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f4599f02b5f8d58-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:18.954098" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:17.736365" elapsed="1.217824"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:18.955080" elapsed="0.003972"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:18.959912" elapsed="0.000911"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:18.959370" elapsed="0.001561"/>
+</kw>
+<var name="${row}">{'name': 'Vincent Mueller', 'email': 'michealvalentine@example.com', 'gender': 'female', 'status': 'active', 'expected_type': 'positive', 'ml_label': 'anomaly', 'anomaly_score': '-0.014'}</var>
+<status status="PASS" start="2026-04-30T12:43:17.733513" elapsed="1.227464"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:18.964992" level="INFO">${payload} = {'name': 'Douglas Reyes', 'email': 'mburch@example.net', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:18.961915" elapsed="0.003133"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:19.453812" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '98'} 
+ body=b'{"name": "Douglas Reyes", "email": "mburch@example.net", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:19.454289" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:19 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '88', 'x-ratelimit-reset': '2', 'x-request-id': '0329ddf2-eb44-45cb-a6cb-5fe6d17b86cf', 'x-runtime': '0.085567', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=kH9Btw%2FvNOhp%2FzLgs9l7L6fic3xKrfXNkxfKZB7OpaS%2BkgFyR5bBZinZcwrLzuiOxk5N4%2FfulDV1uy99QkXY15faWdj4TDECBis7y7SXTZCXPPUlAY%2BHPEdP%2FhjUOXc%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f4599f7da948d81-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:19.454792" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:18.965571" elapsed="0.489272"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.455546" elapsed="0.002760"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.459858" elapsed="0.001094"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:19.458869" elapsed="0.002194"/>
+</kw>
+<var name="${row}">{'name': 'Douglas Reyes', 'email': 'mburch@example.net', 'gender': 'female', 'status': 'inactive', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.077'}</var>
+<status status="PASS" start="2026-04-30T12:43:18.961531" elapsed="0.499585"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:19.463894" level="INFO">${payload} = {'name': 'David Davidson', 'email': 'angela18@example.org', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.461488" elapsed="0.002456"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:19.976489" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '101'} 
+ body=b'{"name": "David Davidson", "email": "angela18@example.org", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:19.976843" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:19 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '87', 'x-ratelimit-reset': '3', 'x-request-id': 'ae4dfb15-24c1-49c0-b3a5-5ad4fa540cd3', 'x-runtime': '0.101782', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=zJy0jB4kCPqY7U9npoNYSgGcachSqLUr%2FE38ut1M3yex%2Fu53Cklu%2BXr%2F3RvBdkY%2FpWWGDnAAsMnyUZ9w8oQwbh3OyUpd%2BbL4waqaQzB07tIRff10MGAmIBDO8OfyFkc%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f4599fafd878ddb-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:19.980521" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.464235" elapsed="0.516372"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.981091" elapsed="0.002475"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.984514" elapsed="0.000940"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:19.984029" elapsed="0.001524"/>
+</kw>
+<var name="${row}">{'name': 'David Davidson', 'email': 'angela18@example.org', 'gender': 'female', 'status': 'inactive', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.136'}</var>
+<status status="PASS" start="2026-04-30T12:43:19.461308" elapsed="0.524289"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:19.988547" level="INFO">${payload} = {'name': 'Phillip Nelson', 'email': 'mariahdavis@example.org', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.985935" elapsed="0.002696"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:20.447834" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '104'} 
+ body=b'{"name": "Phillip Nelson", "email": "mariahdavis@example.org", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:20.448100" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:20 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '86', 'x-ratelimit-reset': '4', 'x-request-id': 'ca42b0b8-28b2-4846-bd26-019e01e043e9', 'x-runtime': '0.089119', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=5rq80EDZZfa0ysotae63UcnwMABtsy76m1tu3sLuNLucZJBqn4NYcJxhNi%2Bm52xC5eyUZqT7DX3thFklAbqgHNaBzX%2FUMQF6buSYS9xdIs6Bf3GYzTcfkswkElsyuxE%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f4599fe48738d78-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:20.448326" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:19.988863" elapsed="0.459505"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.448642" elapsed="0.001531"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.450888" elapsed="0.000865"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:20.450443" elapsed="0.001404"/>
+</kw>
+<var name="${row}">{'name': 'Phillip Nelson', 'email': 'mariahdavis@example.org', 'gender': 'female', 'status': 'inactive', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.12'}</var>
+<status status="PASS" start="2026-04-30T12:43:19.985769" elapsed="0.466124"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:20.454580" level="INFO">${payload} = {'name': 'Stacey Arias', 'email': 'gbrown@example.com', 'gender': 'female', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.452225" elapsed="0.002399"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:20.925443" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '95'} 
+ body=b'{"name": "Stacey Arias", "email": "gbrown@example.com", "gender": "female", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:20.925584" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:20 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '85', 'x-ratelimit-reset': '4', 'x-request-id': '2854ae81-f639-4ac9-8773-c9b78b1e16a5', 'x-runtime': '0.100635', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qELPRLdn0tzuPOvfnRb7aHVzBFuRCDnCMypsXTmp%2FXlu5ULXEYdDgBjVHAQGy4kBY4dvMlwOntrrVckd%2F1wRArdO5NOYkhR0VCkV7WCw82QJ0cly1F3h6trfamYn9e0%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a01283a5894-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:20.925766" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.454814" elapsed="0.470987"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.926035" elapsed="0.001264"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.927887" elapsed="0.000680"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:20.927521" elapsed="0.001111"/>
+</kw>
+<var name="${row}">{'name': 'Stacey Arias', 'email': 'gbrown@example.com', 'gender': 'female', 'status': 'active', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.055'}</var>
+<status status="PASS" start="2026-04-30T12:43:20.452059" elapsed="0.476603"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:20.930512" level="INFO">${payload} = {'name': 'Zachary Brooks', 'email': 'florescory@example.net', 'gender': 'male', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.928897" elapsed="0.001645"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:21.410818" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '101'} 
+ body=b'{"name": "Zachary Brooks", "email": "florescory@example.net", "gender": "male", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:21.411262" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:21 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '84', 'x-ratelimit-reset': '5', 'x-request-id': '711db7ac-1015-4e72-a488-8a6c2c02ec26', 'x-runtime': '0.083978', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=9f2nK9GNuJ823IcZl94S5DfyUHqCXSkn0U1VeAi0agcZMPKoAPrxHtJ8XXDLr9ikW0ZkEDsNrpDPz7QjkAHoC1ZOKYOxcZBNYA4GlI2T84mmlKzWb%2B3kkGyQe8KUuI4%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a0429a78d84-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:21.416578" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:20.930678" elapsed="0.485987"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.417444" elapsed="0.002103"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.420336" elapsed="0.000852"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:21.419873" elapsed="0.001410"/>
+</kw>
+<var name="${row}">{'name': 'Zachary Brooks', 'email': 'florescory@example.net', 'gender': 'male', 'status': 'inactive', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.105'}</var>
+<status status="PASS" start="2026-04-30T12:43:20.928781" elapsed="0.492545"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:21.423983" level="INFO">${payload} = {'name': 'Raven Taylor', 'email': 'samantha72@example.net', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.421659" elapsed="0.002368"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:21.880248" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '101'} 
+ body=b'{"name": "Raven Taylor", "email": "samantha72@example.net", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:21.880606" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:21 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '83', 'x-ratelimit-reset': '6', 'x-request-id': '58758a89-87c7-4f95-a48d-ca93e028532c', 'x-runtime': '0.079472', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=0bt973PuxHV27N2qG5fa4kCh%2BqBFC%2FlODvcaK2oNPGNQ4J1IoHi255Sx0%2BHnBdw%2FoqWI1lKMc9U8DuYdiTPhklIzfiuREHhBlAd8MgXx%2F%2B3ZWiGMFpdN0buROBS%2FUgM%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a073fe28d6c-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:21.881130" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.424212" elapsed="0.456991"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.881788" elapsed="0.002119"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.884692" elapsed="0.000854"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:21.884209" elapsed="0.001434"/>
+</kw>
+<var name="${row}">{'name': 'Raven Taylor', 'email': 'samantha72@example.net', 'gender': 'female', 'status': 'inactive', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.11'}</var>
+<status status="PASS" start="2026-04-30T12:43:21.421494" elapsed="0.464191"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:21.888397" level="INFO">${payload} = {'name': 'Luis Bullock', 'email': 'scottmary@example.net', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.886033" elapsed="0.002409"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:22.434819" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '100'} 
+ body=b'{"name": "Luis Bullock", "email": "scottmary@example.net", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:22.435089" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:22 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '82', 'x-ratelimit-reset': '6', 'x-request-id': 'aa605d2b-c0e1-45f7-a781-a56c7d2a559b', 'x-runtime': '0.082473', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=7n5LwyYpBBy%2Bnidqem4Dv5BpS9d%2FiFcM7RQDziKtopr2wF%2BOfkDri%2FgXdmek2IonisblvtENC6slIOlnwyo2hW7xAQ2RAaV2B5AP%2Fw9xO9BuIA5HgUwmCj%2Bh823UXF0%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a0a18591bf4-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:22.435754" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:21.888632" elapsed="0.547183"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.436459" elapsed="0.002565"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.439981" elapsed="0.000906"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:22.439437" elapsed="0.001549"/>
+</kw>
+<var name="${row}">{'name': 'Luis Bullock', 'email': 'scottmary@example.net', 'gender': 'female', 'status': 'inactive', 'expected_type': 'positive', 'ml_label': 'normal', 'anomaly_score': '0.106'}</var>
+<status status="PASS" start="2026-04-30T12:43:21.885865" elapsed="0.555166"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:22.443778" level="INFO">${payload} = {'name': 'Lisa Henderson', 'email': 'john10@example.org', 'gender': '', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.441395" elapsed="0.002429"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:22.946293" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '91'} 
+ body=b'{"name": "Lisa Henderson", "email": "john10@example.org", "gender": "", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:22.946803" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:22 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '70', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '81', 'x-ratelimit-reset': '7', 'x-request-id': 'e6fe254c-3b5a-4e6e-8603-e2e0188e494e', 'x-runtime': '0.092012', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=lqDJQxI5LHmfv8g%2FE2%2B51wLuRuaCviIZL026rdjTUKO9BxvCMqmvKB1nEYgfxcr9Za3W%2BdiOXaG9kes5%2BYd3gwrL84v4k09eOKuKz5XAQjl4Md5m%2BU%2BgpMW4JNH0kjI%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a0d9fb1706e-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"gender","message":"can't be blank, can be male of female"}] 
+ </msg>
+<msg time="2026-04-30T12:43:22.951265" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.444025" elapsed="0.507328"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.952031" elapsed="0.002790"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.955870" elapsed="0.000949"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:22.955224" elapsed="0.001702"/>
+</kw>
+<var name="${row}">{'name': 'Lisa Henderson', 'email': 'john10@example.org', 'gender': '', 'status': 'active', 'expected_type': 'negative', 'ml_label': 'normal', 'anomaly_score': '0.064'}</var>
+<status status="PASS" start="2026-04-30T12:43:22.441214" elapsed="0.515754"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:22.959729" level="INFO">${payload} = {'name': 'Riley Bryant', 'email': '', 'gender': 'male', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.957324" elapsed="0.002450"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:23.404435" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '77'} 
+ body=b'{"name": "Riley Bryant", "email": "", "gender": "male", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:23.404884" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:23 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '46', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '80', 'x-ratelimit-reset': '8', 'x-request-id': 'e154e076-06d1-4813-922d-0d276092a545', 'x-runtime': '0.079043', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ckhkrtHxQCBNwN40Y8NSO9LhvMZam3FISdgNqS5a8Wrko%2F%2B7NRAVIlvHu2s3AwIr7DEDhz0gA34ATpOYR4Atbj2Jgzi%2BCitubifOCHK1c7nvAWBYNzZHoTyqR%2BEEV4g%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a10cfba8d5b-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"can't be blank"}] 
+ </msg>
+<msg time="2026-04-30T12:43:23.405854" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:22.959976" elapsed="0.445976"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.406779" elapsed="0.002920"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.411033" elapsed="0.001376"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:23.410033" elapsed="0.002501"/>
+</kw>
+<var name="${row}">{'name': 'Riley Bryant', 'email': '', 'gender': 'male', 'status': 'inactive', 'expected_type': 'negative', 'ml_label': 'anomaly', 'anomaly_score': '-0.052'}</var>
+<status status="PASS" start="2026-04-30T12:43:22.957149" elapsed="0.455439"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:23.415435" level="INFO">${payload} = {'name': 'Jose Allen', 'email': 'kellysmith@example.com', 'gender': 'female', 'status': ''}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.412968" elapsed="0.002511"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:23.968149" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '91'} 
+ body=b'{"name": "Jose Allen", "email": "kellysmith@example.com", "gender": "female", "status": ""}' 
+ </msg>
+<msg time="2026-04-30T12:43:23.968257" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:23 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '47', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '79', 'x-ratelimit-reset': '8', 'x-request-id': '51b29f92-3dc9-4779-bf29-1fe2224152ca', 'x-runtime': '0.085130', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=VVMsEO6kxFRB860Gp1OZZk8UFDXFyTLjQ%2Be25MFeTjVUahJTq%2Fv85RYne%2BwmeH5j1Bj%2BinbQUY6mnTSZQhmZlCjNXpGTbdCK%2BkEOd7qzfp1ftQP896PXluMosWXQmns%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a13a9d68d6b-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"status","message":"can't be blank"}] 
+ </msg>
+<msg time="2026-04-30T12:43:23.968395" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.415684" elapsed="0.552736"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.968596" elapsed="0.000943"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.969971" elapsed="0.000515"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:23.969704" elapsed="0.000837"/>
+</kw>
+<var name="${row}">{'name': 'Jose Allen', 'email': 'kellysmith@example.com', 'gender': 'female', 'status': '', 'expected_type': 'negative', 'ml_label': 'normal', 'anomaly_score': '0.041'}</var>
+<status status="PASS" start="2026-04-30T12:43:23.412785" elapsed="0.557781"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:23.972350" level="INFO">${payload} = {'name': 'Jason Beck', 'email': 'millsmichael@example.net', 'gender': 'female', 'status': ''}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.970770" elapsed="0.001612"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:24.482274" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '93'} 
+ body=b'{"name": "Jason Beck", "email": "millsmichael@example.net", "gender": "female", "status": ""}' 
+ </msg>
+<msg time="2026-04-30T12:43:24.482662" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:24 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '47', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '78', 'x-ratelimit-reset': '9', 'x-request-id': '47d1ccff-5e6e-46e8-8282-90bd89ea7620', 'x-runtime': '0.098680', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=rnEnmMPDuT6y5c4q4JMPZeVtxzpr8ggooR3%2FqyiKH2tCQBWrzUbm57W4n4hRs1Kak8YYIhwFsd4KBF19XhGcjBlDHKh1tox6FGvBEoSQQt3SdqbeyIdaGvMHBe7m4yw%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a172dc32970-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"status","message":"can't be blank"}] 
+ </msg>
+<msg time="2026-04-30T12:43:24.487425" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:23.972516" elapsed="0.515012"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:24.488200" elapsed="0.002461"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:24.491467" elapsed="0.000878"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:24.490997" elapsed="0.001444"/>
+</kw>
+<var name="${row}">{'name': 'Jason Beck', 'email': 'millsmichael@example.net', 'gender': 'female', 'status': '', 'expected_type': 'negative', 'ml_label': 'normal', 'anomaly_score': '0.046'}</var>
+<status status="PASS" start="2026-04-30T12:43:23.970669" elapsed="0.521816"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:24.495146" level="INFO">${payload} = {'name': 'Rachel Romero', 'email': 'myerstheodore@example.net', 'gender': 'female', 'status': 'invalid'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:24.492827" elapsed="0.002393"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:25.096815" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '104'} 
+ body=b'{"name": "Rachel Romero", "email": "myerstheodore@example.net", "gender": "female", "status": "invalid"}' 
+ </msg>
+<msg time="2026-04-30T12:43:25.097192" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:24 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '47', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '77', 'x-ratelimit-reset': '10', 'x-request-id': '0c74d729-3d95-41f4-87ec-6d96e5077370', 'x-runtime': '0.128462', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=jz%2F3Mmfky1pEl0DZLuuHs5%2FDjjXxzT8DZ%2BU1Tg0Esria4MsPfXw%2BX%2FhlBPEr1qtxK4eW2Vjl%2B03BBzJYaiO%2FfxQT7AySeKRp0RGW%2BLEQzOKcCcY1tJXb%2FG0NR6VYl%2BA%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a1a68078d6c-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"status","message":"can't be blank"}] 
+ </msg>
+<msg time="2026-04-30T12:43:25.097720" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:24.495507" elapsed="0.602306"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.098461" elapsed="0.002643"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.102240" elapsed="0.001646"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:25.101486" elapsed="0.002567"/>
+</kw>
+<var name="${row}">{'name': 'Rachel Romero', 'email': 'myerstheodore@example.net', 'gender': 'female', 'status': 'invalid', 'expected_type': 'negative', 'ml_label': 'normal', 'anomaly_score': '0.071'}</var>
+<status status="PASS" start="2026-04-30T12:43:24.492656" elapsed="0.611455"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:25.107541" level="INFO">${payload} = {'name': 'James Burgess', 'email': 'kristina53@example.net', 'gender': 'female', 'status': 'invalid'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.104648" elapsed="0.002945"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:25.558458" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '101'} 
+ body=b'{"name": "James Burgess", "email": "kristina53@example.net", "gender": "female", "status": "invalid"}' 
+ </msg>
+<msg time="2026-04-30T12:43:25.558563" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:25 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '47', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '76', 'x-ratelimit-reset': '10', 'x-request-id': 'a7358f2e-7636-44cf-884d-4e84ef5960ee', 'x-runtime': '0.087034', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=UcVOQJp031C%2FqlQns77Z%2B9EdEtHkZZkNjuQeCFDbk6qQh%2BiOvsRQOxfCb2Lrh2nSc38MIieEvSJvASdj5FTa7VnSKsARCmj058Qrm%2BovJRgkQ%2BhD%2BxDKrV%2FzdHc1QAs%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a1e4a21dfc8-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"status","message":"can't be blank"}] 
+ </msg>
+<msg time="2026-04-30T12:43:25.558776" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.107810" elapsed="0.450990"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.559007" elapsed="0.001022"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.560475" elapsed="0.000528"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:25.560204" elapsed="0.000855"/>
+</kw>
+<var name="${row}">{'name': 'James Burgess', 'email': 'kristina53@example.net', 'gender': 'female', 'status': 'invalid', 'expected_type': 'negative', 'ml_label': 'normal', 'anomaly_score': '0.116'}</var>
+<status status="PASS" start="2026-04-30T12:43:25.104386" elapsed="0.456700"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:25.562734" level="INFO">${payload} = {'name': 'Ashley Perkins', 'email': 'dennis58@example.com', 'gender': 'unknown', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.561291" elapsed="0.001468"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:26.120876" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '100'} 
+ body=b'{"name": "Ashley Perkins", "email": "dennis58@example.com", "gender": "unknown", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:26.121282" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:26 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '70', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '75', 'x-ratelimit-reset': '11', 'x-request-id': '595cfd38-053a-421a-9c22-9bad79336cd0', 'x-runtime': '0.104700', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=acJD5U1ex39eWCNeyYiQSxbrzbv4Mr0O1srMbAGDN2aQnPq8PdLi6HXCOa2npH9cIkYqz9icZPakpjmiz0M1mmhYIDrk%2F2UksEYNMXiN84P%2BL55eJ98VR%2BLe%2BVoQJcA%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a211966b606-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"gender","message":"can't be blank, can be male of female"}] 
+ </msg>
+<msg time="2026-04-30T12:43:26.124952" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:25.562881" elapsed="0.562253"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.125664" elapsed="0.002127"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.128803" elapsed="0.000972"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:26.128196" elapsed="0.001669"/>
+</kw>
+<var name="${row}">{'name': 'Ashley Perkins', 'email': 'dennis58@example.com', 'gender': 'unknown', 'status': 'active', 'expected_type': 'negative', 'ml_label': 'normal', 'anomaly_score': '0.136'}</var>
+<status status="PASS" start="2026-04-30T12:43:25.561190" elapsed="0.568717"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:26.132541" level="INFO">${payload} = {'name': 'Carrie Maxwell', 'email': 'epollard@example.net', 'gender': 'male', 'status': ''}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.130228" elapsed="0.002357"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:26.813552" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '91'} 
+ body=b'{"name": "Carrie Maxwell", "email": "epollard@example.net", "gender": "male", "status": ""}' 
+ </msg>
+<msg time="2026-04-30T12:43:26.813884" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:26 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '47', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '74', 'x-ratelimit-reset': '12', 'x-request-id': '032ccf24-d45f-431e-a73e-3c5e2c26894d', 'x-runtime': '0.297483', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=vTQkLvDO5nMLo8l8Tab5olhDtKpvKPFYftccAbjDUXI0C2wLEX8KFrcqkOxZz29rtgoqPMHm8Gyq6%2FMgmO1ExA2D%2BsLN0IZKseMpi0uqxmUGSvrYXk3Lzvl8HMLlf9M%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a24a8958dd1-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"status","message":"can't be blank"}] 
+ </msg>
+<msg time="2026-04-30T12:43:26.814589" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.132781" elapsed="0.681875"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.815217" elapsed="0.002367"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.818523" elapsed="0.001515"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:26.817933" elapsed="0.002304"/>
+</kw>
+<var name="${row}">{'name': 'Carrie Maxwell', 'email': 'epollard@example.net', 'gender': 'male', 'status': '', 'expected_type': 'negative', 'ml_label': 'normal', 'anomaly_score': '0.136'}</var>
+<status status="PASS" start="2026-04-30T12:43:26.130071" elapsed="0.690234"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:26.823624" level="INFO">${payload} = {'name': 'Chad Baldwin', 'email': 'plainaddress', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.820881" elapsed="0.002799"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:27.349529" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '91'} 
+ body=b'{"name": "Chad Baldwin", "email": "plainaddress", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:27.349972" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:27 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '42', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '73', 'x-ratelimit-reset': '12', 'x-request-id': '70637607-25da-46ae-a9f5-3a7a2955e7ce', 'x-runtime': '0.096914', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=F5ixPJgrvVTIAKZ%2B65UlD43NN%2FGnJ0YF0x0Klt%2Fgs8MKHszLrAzDpvkRmBGmZTbKDw2Aoepcsmi9fHTZid13gKGaL6PYQqHy%2FBXpJj%2FXNsuqTB6M1Ls3wv4VyiUHmUo%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a28fae0d889-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"is invalid"}] 
+ </msg>
+<msg time="2026-04-30T12:43:27.350583" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:26.823906" elapsed="0.526779"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:27.351574" elapsed="0.003172"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:27.355902" elapsed="0.001626"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:27.355037" elapsed="0.002634"/>
+</kw>
+<var name="${row}">{'name': 'Chad Baldwin', 'email': 'plainaddress', 'gender': 'female', 'status': 'inactive', 'expected_type': 'negative', 'ml_label': 'anomaly', 'anomaly_score': '-0.052'}</var>
+<status status="PASS" start="2026-04-30T12:43:26.820566" elapsed="0.537153"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:27.360927" level="INFO">${payload} = {'name': '', 'email': 'zachary87@example.com', 'gender': 'male', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:27.358102" elapsed="0.002892"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:28.684702" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '84'} 
+ body=b'{"name": "", "email": "zachary87@example.com", "gender": "male", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:28.684884" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:28 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '45', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '73', 'x-ratelimit-reset': '12', 'x-request-id': 'a6cdf10f-cc6e-4f75-a503-d0c5c374e17e', 'x-runtime': '0.779896', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=hUQnlJ8aAl1%2FQF8CCdgrxeCycw4cJxED872tMh99zlm%2BDRlGOX%2FFuhmjI2LBAkq3DEypo%2B%2FSE%2F%2Fat3Dp8dU4sFgX2Gu5FNaM74rcXz7P7zpaRqqvHRO8b6lQGVJULkE%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a2c5b72432d-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"name","message":"can't be blank"}] 
+ </msg>
+<msg time="2026-04-30T12:43:28.687149" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:27.361235" elapsed="1.325963"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:28.687496" elapsed="0.001723"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:28.689965" elapsed="0.000894"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:28.689508" elapsed="0.001448"/>
+</kw>
+<var name="${row}">{'name': '', 'email': 'zachary87@example.com', 'gender': 'male', 'status': 'active', 'expected_type': 'negative', 'ml_label': 'anomaly', 'anomaly_score': '-0.098'}</var>
+<status status="PASS" start="2026-04-30T12:43:27.357918" elapsed="1.333082"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:28.693339" level="INFO">${payload} = {'name': 'Matthew Mitchell', 'email': 'a@b', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:28.691336" elapsed="0.002038"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:30.217065" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '86'} 
+ body=b'{"name": "Matthew Mitchell", "email": "a@b", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:30.217536" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:30 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '73', 'x-ratelimit-reset': '11', 'x-request-id': '40050358-32c6-40fc-8ebb-eb8ce32362eb', 'x-runtime': '0.942695', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=%2FJwj12of85TXYNvf6%2BPSinAD6yqMjwW0aGefJnQQ6V54Yze8luXnXMyEdIUYdF6P0J83hyhA5f4NT3R7dbs%2BsdMIIO6mag6AgVDFCt4bxEbxFc%2FbtMgBwNb3eimwu7I%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a34abf98d5a-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:30.218168" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:28.693533" elapsed="1.524746"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:30.219192" elapsed="0.003668"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:30.223939" elapsed="0.001084"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:30.223262" elapsed="0.001879"/>
+</kw>
+<var name="${row}">{'name': 'Matthew Mitchell', 'email': 'a@b', 'gender': 'female', 'status': 'inactive', 'expected_type': 'edge', 'ml_label': 'anomaly', 'anomaly_score': '-0.027'}</var>
+<status status="PASS" start="2026-04-30T12:43:28.691168" elapsed="1.534029"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:30.229039" level="INFO">${payload} = {'name': 'Jessica Ross', 'email': 'test.email@sub.domain.com', 'gender': 'female', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:30.225676" elapsed="0.003537"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:31.240868" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '102'} 
+ body=b'{"name": "Jessica Ross", "email": "test.email@sub.domain.com", "gender": "female", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:31.241336" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:31 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '74', 'x-ratelimit-reset': '10', 'x-request-id': '39f6d227-2dd0-4025-9175-2f6df0467d6e', 'x-runtime': '0.473516', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=XW%2BIykVs5jYXRb%2BX7lrDihDJMMzZC1%2BH7LFGtlldFbNggzKjyRrWdH4X6JD6%2BnQw0iJdkTz67bv7NW6r7%2FAYHBP3JgAvbgS6TxiI1zcgZEw5AwQVW2wYKGQfdcTRfdg%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a3e4c5de849-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:31.242195" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:30.229604" elapsed="1.012687"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.243152" elapsed="0.003304"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.247259" elapsed="0.000901"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:31.246790" elapsed="0.001486"/>
+</kw>
+<var name="${row}">{'name': 'Jessica Ross', 'email': 'test.email@sub.domain.com', 'gender': 'female', 'status': 'active', 'expected_type': 'edge', 'ml_label': 'normal', 'anomaly_score': '0.049'}</var>
+<status status="PASS" start="2026-04-30T12:43:30.225468" elapsed="1.022851"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:31.251011" level="INFO">${payload} = {'name': 'Kathleen Jimenez', 'email': 'test.email@sub.domain.com', 'gender': 'female', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.248663" elapsed="0.002392"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:31.955877" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '106'} 
+ body=b'{"name": "Kathleen Jimenez", "email": "test.email@sub.domain.com", "gender": "female", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:31.956249" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:31 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '75', 'x-ratelimit-reset': '10', 'x-request-id': '453878fa-30a3-4caa-9e80-a9993b316f78', 'x-runtime': '0.247612', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=nXA7WjbwtqFl2bLPZipcGjrUnRkPxLhpQzgHNKF6%2F5aZ2i0Sq57yJApFL9EQwXixOWPEsM5G63gIFjjzP6YrQWUn3px5gGbosQadKWVLmGFpBr%2FjHchV%2BkicVxH5kjQ%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a44aa89d102-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:31.960645" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.251241" elapsed="0.709513"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.961298" elapsed="0.002462"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.964750" elapsed="0.001004"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:31.964151" elapsed="0.001697"/>
+</kw>
+<var name="${row}">{'name': 'Kathleen Jimenez', 'email': 'test.email@sub.domain.com', 'gender': 'female', 'status': 'active', 'expected_type': 'edge', 'ml_label': 'normal', 'anomaly_score': '0.007'}</var>
+<status status="PASS" start="2026-04-30T12:43:31.248497" elapsed="0.717393"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:31.968622" level="INFO">${payload} = {'name': 'JohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohn', 'email': 'curtis54@example.com', 'gender': 'male', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.966243" elapsed="0.002424"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:32.572281" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '163'} 
+ body=b'{"name": "JohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohn", "email": "curtis54@example.com", "gender": "male", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:32.572676" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:32 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '75', 'x-ratelimit-reset': '10', 'x-request-id': '6b7b7230-ddf3-4bb2-bc84-da90667eb3ee', 'x-runtime': '0.122821', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=lnOpH%2BrjIms0L%2Bb5y7Z%2FdcDyuL0rVrEuASe2AM8%2F47QV1J3QMivfk7TznEgTqrEgJ1ShVznycQVV7p1i9sX0PZX991mlc4InXfj6WQxy2u%2FfWj50MMES4%2B3BwFvs3pU%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a492d03b141-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:32.573378" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:31.968860" elapsed="0.604609"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:32.574243" elapsed="0.002453"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:32.577697" elapsed="0.000944"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:32.577083" elapsed="0.001664"/>
+</kw>
+<var name="${row}">{'name': 'JohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohn', 'email': 'curtis54@example.com', 'gender': 'male', 'status': 'active', 'expected_type': 'edge', 'ml_label':...</var>
+<status status="PASS" start="2026-04-30T12:43:31.966055" elapsed="0.612737"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:32.582338" level="INFO">${payload} = {'name': 'Mitchell Jackson', 'email': 'test+tag@gmail.com', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:32.579186" elapsed="0.003215"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:33.186765" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '101'} 
+ body=b'{"name": "Mitchell Jackson", "email": "test+tag@gmail.com", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:33.187192" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:33 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '75', 'x-ratelimit-reset': '11', 'x-request-id': 'fa2ce4c4-ee8b-4a59-8ec7-142611173f0e', 'x-runtime': '0.177593', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ObG7nyRZiRKeSvYiPEUzSyGdWinGQGyCoMuNgp1elAbI%2Fwz2ITQN%2FL3tV1pN49HaSpDMEZridbFg9o4vgNb3s2JiWXtAQjOhgKwLqL9ur%2F7SZnE%2FEJsxpTGywqjW2cA%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a4cfcca8dce-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:33.187786" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:32.582656" elapsed="0.605221"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:33.188616" elapsed="0.002602"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:33.192430" elapsed="0.001665"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:33.191607" elapsed="0.002661"/>
+</kw>
+<var name="${row}">{'name': 'Mitchell Jackson', 'email': 'test+tag@gmail.com', 'gender': 'female', 'status': 'inactive', 'expected_type': 'edge', 'ml_label': 'normal', 'anomaly_score': '0.036'}</var>
+<status status="PASS" start="2026-04-30T12:43:32.578996" elapsed="0.615340"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:33.197571" level="INFO">${payload} = {'name': 'Heather Bolton', 'email': 'test+tag@gmail.com', 'gender': 'male', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:33.194862" elapsed="0.002754"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:34.311163" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '97'} 
+ body=b'{"name": "Heather Bolton", "email": "test+tag@gmail.com", "gender": "male", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:34.311361" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:34 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '74', 'x-ratelimit-reset': '12', 'x-request-id': '17a1487c-c999-49d2-8209-2bf843b081d8', 'x-runtime': '0.179880', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=gIlpES0ksjShu8txQQyYfTQ8JA4vUVvSaSzv%2BMhxh39h6r1OcbsVFIDeiY%2FpzhQxlSse%2FkBk2OPYrf7ckqt4yqA1vSOpFerKiNG95vlIPBC1Z0zjZWnNMwhzihYyNuA%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a50de7bca98-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:34.313864" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:33.197812" elapsed="1.116107"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.314221" elapsed="0.001574"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.316495" elapsed="0.000832"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:34.316057" elapsed="0.001362"/>
+</kw>
+<var name="${row}">{'name': 'Heather Bolton', 'email': 'test+tag@gmail.com', 'gender': 'male', 'status': 'inactive', 'expected_type': 'edge', 'ml_label': 'normal', 'anomaly_score': '0.064'}</var>
+<status status="PASS" start="2026-04-30T12:43:33.194607" elapsed="1.122854"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:34.320163" level="INFO">${payload} = {'name': 'Heidi Owen', 'email': 'test.email@sub.domain.com', 'gender': 'male', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.317787" elapsed="0.002418"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:34.927000" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '100'} 
+ body=b'{"name": "Heidi Owen", "email": "test.email@sub.domain.com", "gender": "male", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:34.927301" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:34 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '73', 'x-ratelimit-reset': '12', 'x-request-id': '2e0a343b-a101-49ce-821f-be01d30030b6', 'x-runtime': '0.156650', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=CeAvl%2Fvq6d5ERTcj9wZKz55ytv7BX1GqR4lTbXwa1AsHlte0XGlA%2BFXKlzVW3YhBqzwW4YD%2B4J7%2Bc4mCvHKypPaD6bxicGk2XVolzwswH%2FmjOpIn6K%2FsEFFRjEbc3XQ%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a57dc255288-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:34.927740" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.320408" elapsed="0.607397"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.928423" elapsed="0.002093"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.931738" elapsed="0.001212"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:34.931036" elapsed="0.002020"/>
+</kw>
+<var name="${row}">{'name': 'Heidi Owen', 'email': 'test.email@sub.domain.com', 'gender': 'male', 'status': 'inactive', 'expected_type': 'edge', 'ml_label': 'anomaly', 'anomaly_score': '-0.007'}</var>
+<status status="PASS" start="2026-04-30T12:43:34.317624" elapsed="0.615475"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:34.935806" level="INFO">${payload} = {'name': 'Jessica Martinez', 'email': 'test+tag@gmail.com', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.933434" elapsed="0.002418"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:35.539331" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '101'} 
+ body=b'{"name": "Jessica Martinez", "email": "test+tag@gmail.com", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:35.539439" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:35 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '73', 'x-ratelimit-reset': '12', 'x-request-id': '4035976f-c597-4837-9181-51fbf29dccec', 'x-runtime': '0.131592', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=w%2Bdkx1AH5idHYzzSJDjLgT6ym7Ba%2FqQ48qiN%2FQ0bTVbPdQhSsRQLAt2DJWvqFsSdxf9tvs4mvM9FOmkeCJnUNcX0JiioR2PtgBOhFc8pBiN%2B8FP5O7zDM8%2FEkhlDSYc%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a5bbfd1b07c-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:35.539660" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:34.936048" elapsed="0.603635"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:35.539854" elapsed="0.000873"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:35.541133" elapsed="0.000462"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:35.540880" elapsed="0.000765"/>
+</kw>
+<var name="${row}">{'name': 'Jessica Martinez', 'email': 'test+tag@gmail.com', 'gender': 'female', 'status': 'inactive', 'expected_type': 'edge', 'ml_label': 'normal', 'anomaly_score': '0.036'}</var>
+<status status="PASS" start="2026-04-30T12:43:34.933267" elapsed="0.608401"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:35.543104" level="INFO">${payload} = {'name': 'A', 'email': 'xrush@example.com', 'gender': 'female', 'status': 'inactive'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:35.541852" elapsed="0.001275"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:36.052024" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '85'} 
+ body=b'{"name": "A", "email": "xrush@example.com", "gender": "female", "status": "inactive"}' 
+ </msg>
+<msg time="2026-04-30T12:43:36.052222" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:36 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '72', 'x-ratelimit-reset': '13', 'x-request-id': '094b1c35-557a-43ef-b31b-a42a2d199ce7', 'x-runtime': '0.101931', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qzXcbIBb6%2B0fnMIzpST7GHc5vcpWGq9YEmmym6OjaM71qRC1hdzvx7zFeDTHhIIMSd0OeyiXe6PxeBWs%2FF7XkKDNPhdhK2cZH%2FeDNOww7jVTK%2FLp%2FbJGyrIF6ZbIV1Q%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a5f6f2e8dc5-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:36.054969" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:35.543228" elapsed="0.511800"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:36.055322" elapsed="0.001581"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:36.057941" elapsed="0.001043"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:36.057191" elapsed="0.001904"/>
+</kw>
+<var name="${row}">{'name': 'A', 'email': 'xrush@example.com', 'gender': 'female', 'status': 'inactive', 'expected_type': 'edge', 'ml_label': 'anomaly', 'anomaly_score': '-0.162'}</var>
+<status status="PASS" start="2026-04-30T12:43:35.541762" elapsed="0.517379"/>
+</iter>
+<iter>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-30T12:43:36.062474" level="INFO">${payload} = {'name': 'JohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohn', 'email': 'redwards@example.org', 'gender': 'male', 'status': 'active'}</msg>
+<var>${payload}</var>
+<arg>name=${row["name"]}</arg>
+<arg>email=${row["email"]}</arg>
+<arg>gender=${row["gender"]}</arg>
+<arg>status=${row["status"]}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-30T12:43:36.059507" elapsed="0.003044"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2026-04-30T12:43:36.666218" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.33.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer d982263367d29a3361ba2ad6c79041522e4e1203709181112a7204f001e48e84', 'Content-Type': 'application/json', 'Content-Length': '163'} 
+ body=b'{"name": "JohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohn", "email": "redwards@example.org", "gender": "male", "status": "active"}' 
+ </msg>
+<msg time="2026-04-30T12:43:36.666363" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=422, reason=Unprocessable Entity 
+ headers={'Date': 'Thu, 30 Apr 2026 09:43:36 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '54', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache', 'feature-policy': "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'", 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '71', 'x-ratelimit-reset': '14', 'x-request-id': '65ae3570-f4ee-4280-a468-c56285903417', 'x-runtime': '0.151822', 'x-xss-protection': '0', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'cf-cache-status': 'DYNAMIC', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qggKvdCIWP0qycOEnfTY8LWwpt1SqmO0NSm9jXvOVJAPik1NPL%2FXbnGNKp9Odb7plVI1MDtKxXFyitc9U9nrDmYxCwAxP5usl09u%2Fw7hqnGTjDb3OzexJYymtTeu7kY%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9f459a62b8c03f46-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[{"field":"email","message":"has already been taken"}] 
+ </msg>
+<msg time="2026-04-30T12:43:36.666647" level="INFO">${response} = &lt;Response [422]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2026-04-30T12:43:36.062845" elapsed="0.603838"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ML: ${row["ml_label"]} | Score: ${row["anomaly_score"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-30T12:43:36.666912" elapsed="0.001269"/>
+</kw>
+<kw name="Validate API Response" owner="ai_keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code} in [200, 201, 400, 401, 422]</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-04-30T12:43:36.668776" elapsed="0.000688"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2026-04-30T12:43:36.668411" elapsed="0.001128"/>
+</kw>
+<var name="${row}">{'name': 'JohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohnJohn', 'email': 'redwards@example.org', 'gender': 'male', 'status': 'active', 'expected_type': 'edge', 'ml_label':...</var>
+<status status="PASS" start="2026-04-30T12:43:36.059326" elapsed="0.610248"/>
+</iter>
+<var>${row}</var>
+<value>@{data}</value>
+<status status="PASS" start="2026-04-30T12:43:16.180385" elapsed="20.489234"/>
+</for>
+<arg>${data}</arg>
+<status status="PASS" start="2026-04-30T12:43:16.179483" elapsed="20.490209"/>
+</kw>
+<status status="PASS" start="2026-04-30T12:43:16.178580" elapsed="20.491283"/>
+</test>
+<status status="PASS" start="2026-04-30T12:43:14.907465" elapsed="21.762841"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Ai Tests" id="s1" pass="2" fail="0" skip="0">Ai Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
